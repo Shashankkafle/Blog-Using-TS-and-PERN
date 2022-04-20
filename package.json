@@ -1,0 +1,39 @@
+{
+  "name": "blog-using-ts-and-pern",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node backend/server.ts",
+    "dev": "webpack-dev-server --inline --hot",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shashankkafle/Blog-Using-TS-and-PERN.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shashankkafle/Blog-Using-TS-and-PERN/issues"
+  },
+  "homepage": "https://github.com/Shashankkafle/Blog-Using-TS-and-PERN#readme",
+  "devDependencies": {
+    "@types/jasmine": "^4.0.3",
+    "jasmine-core": "^4.1.0",
+    "karma": "^6.3.18",
+    "karma-chrome-launcher": "^3.1.1",
+    "karma-jasmine": "^5.0.0",
+    "karma-webpack": "^5.0.0",
+    "ts-loader": "^9.2.8",
+    "typescript": "^4.6.3",
+    "webpack": "^5.72.0",
+    "webpack-dev-server": "^4.8.1"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.25",
+    "express": "^4.17.3",
+    "ts-node": "^10.7.0"
+  }
+}
