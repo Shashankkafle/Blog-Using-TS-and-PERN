@@ -4,8 +4,8 @@ import { router } from "./Routes/userRoutes";
 
 dotenv.config()
 
-const PORT:string = process.env.PORT||'5000'
-
+const PORT = process.env.PORT
+console.log(typeof PORT)
 // const app: Express = express()
 const app = express()
 app.use(express.json())

@@ -4,8 +4,8 @@ import AppDataSource from "../../ormconfig"
 
 export class UserController {
     static async createuser(req:Request,res:Response){
-        console.log(req.body)
-       return(UserRepository.createAndSave(req, res))
+       const user = UserRepository.createAndSave(req, res)
+       
     }
 }
 // export class UserController {
