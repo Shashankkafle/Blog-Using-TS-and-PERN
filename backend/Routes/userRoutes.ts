@@ -7,4 +7,5 @@ const router:any = Router()
 // router.post('/register',UserController.createuser)
 router.post('/register',UserController.createuser)
 router.get('/confirmation/:tokens',UserController.confirmEmail)
+router.post('/login',UserController.login)
 export { router }
