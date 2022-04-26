@@ -27,8 +27,8 @@ export class User extends BaseEntity{ //creates table it  doesnot exist
     username!:string
     @Column({
         type: 'varchar',
-        nullable: false,
-        unique: true
+        nullable: false, 
+        unique: false     //made falsse for testing purposes
     })
     email!:string
     @Column({
@@ -42,6 +42,12 @@ export class User extends BaseEntity{ //creates table it  doesnot exist
         nullable: false,
     })
     isAdmin!:boolean
+    
+    @Column({
+        type: 'boolean',
+        nullable: false,
+    })
+    emailConformaton!:boolean
     @CreateDateColumn()
     created_at!: Date;
 

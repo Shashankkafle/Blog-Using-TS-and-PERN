@@ -7,6 +7,11 @@ export class UserController {
        const user = UserRepository.createAndSave(req, res)
        
     }
+    static async confirmEmail(req:Request,res:Response){
+        console.log(req.params)
+        const user = UserRepository.setConformaion(req, res)
+        
+     }
 }
 // export class UserController {
 //     users(req:Request,res:Response) {

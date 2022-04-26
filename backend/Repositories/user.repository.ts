@@ -2,15 +2,20 @@ import { Request,  Response } from "express"
 import {User} from '../Entities/userEntity'
 import bcrypt from "bcrypt";
 import AppDataSource from "../../ormconfig"
-import jwt from "jsonwebtoken"
+import jwt, { JwtPayload } from "jsonwebtoken"
 import { v4 as uuidv4 } from 'uuid'
 // import nodemailer from 'nodemailer'
 import { sendConformationEmail } from "../../emailHandler";
 import dotenv from "dotenv"
+import { convertCompilerOptionsFromJson } from "typescript";
 dotenv.config()
 
 
-
+type Payload = {
+    user: string|null;
+    iat: number|null;
+    exp: number|null;
+  };
 
 
 export const UserRepository = AppDataSource.getRepository(User).extend({
@@ -32,6 +37,7 @@ export const UserRepository = AppDataSource.getRepository(User).extend({
                 user.email = email
                 user.password = hashedPassword
                 user.id = uuidv4()
+                user.emailConformaton = false
                 if(username=='Admin'){
                     user.isAdmin = true
                 }
@@ -89,5 +95,32 @@ export const UserRepository = AppDataSource.getRepository(User).extend({
                 
 
 
+    },
+    async setConformaion(req:Request,res:Response){
+        console.log(req.params.tokens)
+        try {
+            const payload:any=await jwt.verify(req.params.tokens.toString(), '555')
+            const currentId:string = payload.user
+            // let user = new User()
+            // const userRepository:any = AppDataSource.manager
+            // user = await userRepository.findOneBy({
+            //     id:id
+            // })
+            // const user = await this.createQueryBuilder("user")                                  //why no functtion like .savein line 65
+            //                            .where("user.id = :id",{id})
+            //                            .getOne()
+            const curentUser:any = await User.findOneBy({
+                id: currentId
+            })
+            curentUser.emailConformaton = true
+            await User.save(curentUser)
+            
+        } catch (error) {
+            console.log(error)
+            throw new Error("Token verification failed")
+            
+        }
+
+    
     }
 })

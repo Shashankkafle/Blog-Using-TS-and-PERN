@@ -2,6 +2,7 @@ import nodemailer from 'nodemailer'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 import {User} from './backend/Entities/userEntity'
+import { convertCompilerOptionsFromJson } from 'typescript'
  
 dotenv.config()
 
@@ -30,7 +31,8 @@ try {
             expiresIn: '1d'
         }
     )
-    const url = `http://localhost:5000/conformation/${emailToken}`
+    console.log('EMAIL TIKEN: '+emailToken)
+    const url = `http://localhost:5000/confirmation/${emailToken}`
 
     let info = await transporter.sendMail({
         from: senderEmail,
