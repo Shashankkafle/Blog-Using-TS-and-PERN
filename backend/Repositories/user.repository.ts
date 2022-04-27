@@ -4,7 +4,6 @@ import bcrypt from "bcrypt"
 import AppDataSource from "../../ormconfig"
 import jwt from "jsonwebtoken"
 import { v4 as uuidv4 } from 'uuid'
-// import nodemailer from 'nodemailer'
 import { sendConformationEmail } from "../../emailHandler";
 import dotenv from "dotenv"
 dotenv.config()
@@ -27,7 +26,7 @@ export const UserRepository = AppDataSource.getRepository(User).extend({
                 user.username = username
                 user.email = email
                 user.password = hashedPassword
-                user.id = uuidv4()
+                // user.id = uuidv4()
                 user.emailConformaton = false
                 if(username=='Admin'){
                     user.isAdmin = true
@@ -41,7 +40,7 @@ export const UserRepository = AppDataSource.getRepository(User).extend({
 
                     if(user&&verified){
                         try {
-                            await AppDataSource.manager.save(user)
+                            await User.save(user)
                         } catch (error) {
                             console.log(error)
                             throw new Error('Couldnot store user to database')

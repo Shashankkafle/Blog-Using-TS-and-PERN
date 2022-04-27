@@ -1,7 +1,8 @@
 import dotenv from "dotenv"
 import express from 'express'
-import { router } from "./Routes/userRoutes"
+import { userRouter } from "./Routes/userRoutes"
 import "reflect-metadata"
+import { blogRouter } from "./Routes/blogRouter"
 
 
 
@@ -17,7 +18,8 @@ app.use(
       extended: true
     })
   )
-app.use("/", router);
+app.use("/user", userRouter)
+app.use('/blog',blogRouter)
 app.listen(PORT,()=>{
     console.log(PORT)
 })

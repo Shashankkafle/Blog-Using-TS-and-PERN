@@ -1,4 +1,4 @@
-import {BaseEntity, Column, CreateDateColumn, Entity, ManyToMany, PrimaryGeneratedColumn} from "typeorm"
+import {BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn,UpdateDateColumn,JoinTable} from "typeorm"
 import { User } from "./userEntity";
 
 
@@ -21,19 +21,13 @@ export class Blog extends BaseEntity{ //creates table it  doesnot exist
     })
     content!:string
 
-    @Column({
-        type: 'varchar',
-        nullable: false,
-        unique: true
-    })
-    username!:string
-    @ManyToMany(() => User, (user) => user.blogs)
-  user!: User;
+    @ManyToOne(() => User, (user) => user.blogs)
+    user!: User;
 
     @CreateDateColumn()
     created_at!: Date;
 
-    @CreateDateColumn()
+    @UpdateDateColumn()
     updated_at!: Date
 
 }

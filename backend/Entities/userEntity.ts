@@ -1,4 +1,4 @@
-import {BaseEntity, Column, CreateDateColumn, Entity, ManyToMany, PrimaryGeneratedColumn} from "typeorm";
+import {BaseEntity, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn} from "typeorm";
 import { Blog } from "./blogEntity";
 
 
@@ -50,13 +50,13 @@ export class User extends BaseEntity{ //creates table it  doesnot exist
     })
     emailConformaton!:boolean
 
-    @ManyToMany(() => Blog, (blog) => blog.user)
+    @OneToMany(() => Blog, (blog) => blog.user)
   blogs!: Blog[];
 
     @CreateDateColumn()
     created_at!: Date;
 
-    @CreateDateColumn()
+    @UpdateDateColumn()
     updated_at!: Date
 
 }

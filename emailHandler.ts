@@ -2,7 +2,6 @@ import nodemailer from 'nodemailer'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 import {User} from './backend/Entities/userEntity'
-import { convertCompilerOptionsFromJson } from 'typescript'
  
 dotenv.config()
 
@@ -32,7 +31,7 @@ try {
         }
     )
     console.log('EMAIL TOKEN: '+emailToken)
-    const url = `http://localhost:5000/confirmation/${emailToken}`
+    const url = `http://localhost:5000/user/confirmation/${emailToken}`
 
     let info = await transporter.sendMail({
         from: senderEmail,
@@ -66,7 +65,7 @@ export async function sendResetEmail(user:User){
             }
         )
         console.log('EMAIL TOKEN: '+emailToken)
-        const url = `http://localhost:5000/reset-pw/${emailToken}`
+        const url = `http://localhost:5000/user/reset-pw/${emailToken}`
     
         let info = await transporter.sendMail({
             from: senderEmail,
