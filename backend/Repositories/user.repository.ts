@@ -84,13 +84,30 @@ export const UserRepository = AppDataSource.getRepository(User).extend({
     
     },
 
-    async retrieveUsingId(username:string){
+    async retrieveUsingUsername(username:string){
       
             const currentUser = await User.findOneBy({
                 username: username
             })
             return  currentUser                   
         
+    },
+    async retrieveUsingId(id:string){
+      
+            const currentUser = await User.findOneBy({
+                id: id
+            })
+            return  currentUser                   
+        
+    },
+    async changePassword(username:string,newPassword:string){
+        const currentUser:any = await User.findOneBy({
+            username: username
+        })
+        const salt = await bcrypt.genSalt(10)
+        const hashedPassword = await bcrypt.hash(newPassword, salt)
+        currentUser.password = hashedPassword
+        await User.save(currentUser)
     }
 })
 

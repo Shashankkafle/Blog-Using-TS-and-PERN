@@ -31,7 +31,7 @@ try {
             expiresIn: '1d'
         }
     )
-    console.log('EMAIL TIKEN: '+emailToken)
+    console.log('EMAIL TOKEN: '+emailToken)
     const url = `http://localhost:5000/confirmation/${emailToken}`
 
     let info = await transporter.sendMail({
@@ -53,3 +53,32 @@ return(true)
 
 
 }
+
+export async function sendResetEmail(user:User){
+
+        const emailToken = jwt.sign(
+            {
+                user:user.id
+            },
+            '555' ,
+            {
+                expiresIn: '1d'
+            }
+        )
+        console.log('EMAIL TOKEN: '+emailToken)
+        const url = `http://localhost:5000/reset-pw/${emailToken}`
+    
+        let info = await transporter.sendMail({
+            from: senderEmail,
+            to: user.email,
+            subject: "Passsword reset for blog",
+            html: `<h1>Password reset link</h1>
+                <h2>Hello ${user.firstname}</h2>
+                <p>Go to the followong lnk to reset your password</p>
+                <a href=${url}>${url}</a>
+                </div>`,
+          });
+        
+    return(true)
+    }
+    
