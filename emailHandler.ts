@@ -2,6 +2,7 @@ import nodemailer from 'nodemailer'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 import {User} from './backend/Entities/userEntity'
+import { SimpleConsoleLogger } from 'typeorm'
  
 dotenv.config()
 
@@ -66,7 +67,7 @@ export async function sendResetEmail(user:User){
         )
         console.log('EMAIL TOKEN: '+emailToken)
         const url = `http://localhost:5000/user/reset-pw/${emailToken}`
-    
+        console.log('howdy')
         let info = await transporter.sendMail({
             from: senderEmail,
             to: user.email,
@@ -77,7 +78,7 @@ export async function sendResetEmail(user:User){
                 <a href=${url}>${url}</a>
                 </div>`,
           });
-        
+        console.log(info)
     return(true)
     }
     

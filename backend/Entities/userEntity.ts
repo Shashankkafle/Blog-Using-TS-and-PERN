@@ -3,7 +3,7 @@ import { Blog } from "./blogEntity";
 
 
 @Entity('user')
-export class User extends BaseEntity{ //creates table it  doesnot exist
+export class User extends BaseEntity{
 
     @PrimaryGeneratedColumn("uuid")
     id!: string;
@@ -52,6 +52,9 @@ export class User extends BaseEntity{ //creates table it  doesnot exist
 
     @OneToMany(() => Blog, (blog) => blog.user)
   blogs!: Blog[];
+
+//     @OneToMany(() => Comment, (comment) => comment.user)
+//   comments!: Comment[];
 
     @CreateDateColumn()
     created_at!: Date;
