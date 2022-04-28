@@ -4,6 +4,7 @@ import {User} from './backend/Entities/userEntity'
 import { Comment } from "./backend/Entities/commentEntiity"
 import dotenv from "dotenv"
 import { Blog } from "./backend/Entities/blogEntity"
+import { Category } from "./backend/Entities/categoryEnity"
 dotenv.config()
 
 
@@ -15,7 +16,7 @@ const AppDataSource = new DataSource({
     username: "postgres",
     password: process.env.DB_PASSWORD, //could not use .env
     database: "Blog",
-    entities: [User,Blog,Comment],
+    entities: [User,Blog,Comment,Category],
     synchronize: true,
     logging: false,
 })

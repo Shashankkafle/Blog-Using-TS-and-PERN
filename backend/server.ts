@@ -3,6 +3,7 @@ import express from 'express'
 import { userRouter } from "./Routes/userRoutes"
 import "reflect-metadata"
 import { blogRouter } from "./Routes/blogRouter"
+import {categoryRouter} from './Routes/categoryRouter'
 
 
 
@@ -20,6 +21,7 @@ app.use(
   )
 app.use("/user", userRouter)
 app.use('/blog',blogRouter)
+app.use('/category',categoryRouter)
 app.listen(PORT,()=>{
     console.log(PORT)
 })

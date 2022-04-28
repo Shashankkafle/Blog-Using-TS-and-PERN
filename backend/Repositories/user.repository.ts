@@ -19,14 +19,14 @@ export const UserRepository = AppDataSource.getRepository(User).extend({
         }
         const salt = await bcrypt.genSalt(10)
         const hashedPassword = await bcrypt.hash(password, salt)
-
+        console.log("User: ")
                 let user = new User()
                 user.firstname = firstname
                 user.lastname = lastname
                 user.username = username
                 user.email = email
                 user.password = hashedPassword
-                // user.id = uuidv4()
+                user.id = uuidv4()
                 user.emailConformaton = false
                 if(username=='Admin'){
                     user.isAdmin = true
@@ -34,6 +34,8 @@ export const UserRepository = AppDataSource.getRepository(User).extend({
                 else{
                     user.isAdmin = false
                 }
+                console.log(user)
+
                 try {
                    
                     verified = await sendConformationEmail(user)
