@@ -1,5 +1,6 @@
 import {BaseEntity, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn} from "typeorm";
 import { Blog } from "./blogEntity";
+import { Comment } from "./commentEntiity";
 
 
 @Entity('user')
@@ -51,10 +52,10 @@ export class User extends BaseEntity{
     emailConformaton!:boolean
 
     @OneToMany(() => Blog, (blog) => blog.user)
-  blogs!: Blog[];
+    blogs!: Blog[];
 
-//     @OneToMany(() => Comment, (comment) => comment.user)
-//   comments!: Comment[];
+  @OneToMany(() => Comment, (comment) => comment.user)
+  comments!: Comment[];
 
     @CreateDateColumn()
     created_at!: Date;

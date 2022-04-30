@@ -1,6 +1,8 @@
 import {BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn,UpdateDateColumn,JoinTable, OneToMany, ManyToMany} from "typeorm"
 import { Category } from "./categoryEnity";
 import { User } from "./userEntity";
+import { Comment } from "./commentEntiity";
+
 
 
 @Entity('blog')
@@ -29,8 +31,8 @@ export class Blog extends BaseEntity{ //creates table it  doesnot exist
     @JoinTable()
     categories: Category[]
 
-//     @OneToMany(() => Comment, (comment) => comment.blog)
-//   comments!: Comment[];
+    @OneToMany(() => Comment, (comment) => comment.blog)
+  comments!: Comment[];
 
     @CreateDateColumn()
     created_at!: Date;

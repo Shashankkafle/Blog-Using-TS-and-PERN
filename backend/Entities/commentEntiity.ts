@@ -22,11 +22,11 @@ export class Comment extends BaseEntity{ //creates table it  doesnot exist
     })
     content!:string
 
-    // @ManyToOne(() => User, (user) => user.comments)
-    // user!: User;
+    @ManyToOne(() => User, (user) => user.comments)
+    user!: User;
     
-    // @ManyToOne(() => Blog, (blog) => blog.comments)
-    // blog!: Blog;
+    @ManyToOne(() => Blog, (blog) => blog.comments)
+    blog!: Blog;
 
     @CreateDateColumn()
     created_at!: Date;
